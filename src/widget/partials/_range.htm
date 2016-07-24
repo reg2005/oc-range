@@ -1,0 +1,58 @@
+<div class="field-range">
+    <div class="range_result">
+        <?php if(is_array($customLabel)){ ?>
+
+            <?php echo array_shift($customLabel); ?>
+            <span id="range_result_1"></span>
+
+            <?php echo array_shift($customLabel); ?>
+            <span id="range_result_2"></span>
+
+        <?php }else{ ?>
+            <?php echo $customLabel; ?>
+            <span id="range_result_1"></span>
+        <?php } ?>
+
+    </div>
+    <div class="range_behaviour" id="<?= $this->getId('items') ?>">
+        <div id="range_behaviour"></div>
+        <input style="display:none;"
+            name="<?php echo $name; ?>"
+            id="input-range_1"
+            value="<?php echo $value ?>">
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        behaviourSlider = document.getElementById('range_behaviour');
+        html5Slider = document.getElementById('input-range_1');
+
+        <?php if(is_array($customLabel)){ ?>
+            var snapValues = [
+                document.getElementById('range_result_1'),
+                document.getElementById('range_result_2')
+            ];
+        <?php }else{ ?>
+            var snapValues = [
+                document.getElementById('range_result_1')
+            ];
+        <?php } ?>
+
+        noUiSlider.create(behaviourSlider, {
+            start: <?php echo $value ?>,
+            step: <?php echo $step; ?>,
+            range: <?php echo $minMax; ?>,
+            pips: {
+                mode: 'range',
+                density: 3
+            }
+        });
+        behaviourSlider.noUiSlider.on('update', function( values, handle ) {
+            html5Slider.value = values[handle];
+            snapValues[handle].innerHTML = values[handle];
+            console.log(values[handle]);
+        });
+    });
+</script>

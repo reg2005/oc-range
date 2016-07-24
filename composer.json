@@ -1,0 +1,19 @@
+{
+    "name": "reg2005/oc-range",
+    "description": "Widget range for october CMS",
+    "license": "MIT",
+    "version": "1.0.4",
+    "authors": [
+        {
+            "name": "reg2005",
+            "email": "cmp08@ya.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Reg2005\\Widgets\\Range\\": "src"
+        }
+    }
+}
